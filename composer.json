@@ -1,12 +1,12 @@
 {
-    "name": "tcg/voyager",
+    "name": "bitepeng/voyager_cn",
     "description": "A Laravel Admin Package for The Control Group to make your life easier and steer your project in the right direction",
     "keywords": ["laravel", "admin", "panel"],
     "license": "MIT",
-    "homepage": "https://the-control-group.github.io/voyager/",
+    "homepage": "https://github.com/bitepeng/voyager_cn",
     "support": {
-        "issues": "https://github.com/the-control-group/voyager/issues",
-        "source": "https://github.com/the-control-group/voyager"
+        "issues": "https://github.com/bitepeng/voyager_cn/issues",
+        "source": "https://github.com/bitepeng/voyager_cn"
     },
     "authors": [
         {
