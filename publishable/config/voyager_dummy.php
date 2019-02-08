@@ -13,7 +13,12 @@ return [
     'user' => [
         'add_default_role_on_register' => true,
         'default_role'                 => 'user',
-        'namespace'                    => null,
+        'admin_permission'             => 'browse_admin',
+        // Set `namespace` to `null` to use `config('auth.providers.users.model')` value
+        // Set `namespace` to a class to override auth user model.
+        // However make sure the appointed class must ready to use before installing voyager.
+        // Otherwise `php artisan voyager:install` will fail with class not found error.
+        'namespace'                    => null, //App\User::class
         'default_avatar'               => 'users/default.png',
         'redirect'                     => '/admin',
     ],
@@ -92,7 +97,18 @@ return [
 
     'database' => [
         'tables' => [
-            'hidden' => ['migrations', 'data_rows', 'data_types', 'menu_items', 'password_resets', 'permission_role', 'settings'],
+            'hidden' => [
+                'migrations',
+                'data_rows',
+                'data_types',
+                'menu_items',
+                'password_resets',
+                'permission_role',
+                'permissions',
+                'translations',
+                'user_roles',
+                'settings'
+            ],
         ],
     ],
 
@@ -110,7 +126,7 @@ return [
         /*
          * Set whether or not the multilingual is supported by the BREAD input.
          */
-        'enabled' => false,
+        'enabled' => true,
 
         /*
          * Set whether or not the admin layout default is RTL.
@@ -120,14 +136,14 @@ return [
         /*
          * Select default language
          */
-        'default' => 'en',
+        'default' => 'zh_CN',
 
         /*
          * Select languages that are supported.
          */
         'locales' => [
-            'en',
-            //'pt',
+            'zh_CN',
+            //'en',
         ],
     ],
 
@@ -213,12 +229,12 @@ return [
     ],
 
     'googlemaps' => [
-         'key'    => env('GOOGLE_MAPS_KEY', ''),
-         'center' => [
-             'lat' => env('GOOGLE_MAPS_DEFAULT_CENTER_LAT', '32.715738'),
-             'lng' => env('GOOGLE_MAPS_DEFAULT_CENTER_LNG', '-117.161084'),
-         ],
-         'zoom' => env('GOOGLE_MAPS_DEFAULT_ZOOM', 11),
-     ],
+        'key'    => env('GOOGLE_MAPS_KEY', ''),
+        'center' => [
+            'lat' => env('GOOGLE_MAPS_DEFAULT_CENTER_LAT', '32.715738'),
+            'lng' => env('GOOGLE_MAPS_DEFAULT_CENTER_LNG', '-117.161084'),
+        ],
+        'zoom' => env('GOOGLE_MAPS_DEFAULT_ZOOM', 11),
+    ],
 
 ];
