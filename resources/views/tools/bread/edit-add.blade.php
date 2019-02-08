@@ -400,8 +400,10 @@
 @stop
 
 @section('javascript')
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">-->
+    <link rel="stylesheet" href="{{ voyager_asset('libs/jqueryui/jquery-ui.css') }}">
+    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>-->
+    <script type="text/javascript" src="{{ voyager_asset('libs/jqueryui/jquery-ui.min.js') }}"></script>
 
     <script>
         window.invalidEditors = [];
