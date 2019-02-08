@@ -55,6 +55,15 @@ APP_URL=http://localhost:8000
 
 > Only if you are on Laravel 5.4 will you need to [Add the Service Provider.](https://voyager.readme.io/docs/adding-the-service-provider)
 
+SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was to long
+> Add App\Providers\AppServiceProvider 
+```
+use Illuminate\Support\Facades\Schema;
+
+function boot()+
+Schema::defaultStringLength(191);
+```
+
 ### 3. Run The Installer
 
 Lastly, we can install voyager. You can do this either with or without dummy data.
