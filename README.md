@@ -33,7 +33,7 @@ Laravel Admin & BREAD System (Browse, Read, Edit, Add, & Delete), supporting Lar
 After creating your new Laravel application you can include the Voyager package with the following command: 
 
 ```bash
-composer require bitepeng/voyager_cn
+composer require bitepeng/voyager_cn v1.1.12
 ```
 
 ### 2. Add the DB Credentials & APP_URL
