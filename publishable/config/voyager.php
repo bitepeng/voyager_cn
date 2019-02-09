@@ -96,8 +96,17 @@ return [
 
     'database' => [
         'tables' => [
-            'hidden' => ['migrations', 'data_rows', 'data_types', 'menu_items', 'password_resets', 'permission_role', 'settings'],
-        ],
+            'migrations',
+            'data_rows',
+            'data_types',
+            'menu_items',
+            'password_resets',
+            'permission_role',
+            'permissions',
+            'translations',
+            'user_roles',
+            'settings'
+            ],
     ],
 
     /*
@@ -124,13 +133,13 @@ return [
         /*
          * Select default language
          */
-        'default' => 'en',
+        'default' => 'zh_CN',
 
         /*
          * Select languages that are supported.
          */
         'locales' => [
-            'en',
+            'zh_CN',
             //'pt',
         ],
     ],
