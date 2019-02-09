@@ -23,6 +23,55 @@ class TranslationsTableSeeder extends Seeder
     }
 
     /**
+     * Auto generate DataTypes Translations.
+     *
+     * @return void
+     */
+    private function dataTypesTranslations()
+    {
+        // Adding translations for 'display_name_singular'
+        //
+        $_fld = 'display_name_singular';
+        $_tpl = ['data_types', $_fld];
+        foreach (__('voyager::seeders.data_types') as $k=>$v){
+            $_langv=$v['singular'];
+            $dtp = DataType::where($_fld, $_langv)->firstOrFail();
+            if ($dtp->exists) {
+                $this->trans('zh_CN', $this->arr($_tpl, $dtp->id), $_langv);
+            }
+        }
+
+        // Adding translations for 'display_name_plural'
+        //
+        $_fld = 'display_name_plural';
+        $_tpl = ['data_types', $_fld];
+        foreach (__('voyager::seeders.data_types') as $k=>$v){
+            $_langv=$v['singular'];
+            $dtp = DataType::where($_fld, $_langv)->firstOrFail();
+            if ($dtp->exists) {
+                $this->trans('zh_CN', $this->arr($_tpl, $dtp->id), $_langv);
+            }
+        }
+    }
+
+
+    /**
+     * Auto generate Menus Translations.
+     *
+     * @return void
+     */
+    private function menusTranslations()
+    {
+        $_tpl = ['menu_items', 'title'];
+        foreach (__('voyager::seeders.menu_items') as $k=>$v){
+            $_item = MenuItem::where('title', $v)->firstOrFail();
+            if ($_item->exists) {
+                $this->trans('zh_CN', $this->arr($_tpl, $_item->id), $v);
+            }
+        }
+    }
+
+    /**
      * Auto generate Categories Translations.
      *
      * @return void
@@ -43,71 +92,6 @@ class TranslationsTableSeeder extends Seeder
         }
     }
 
-    /**
-     * Auto generate DataTypes Translations.
-     *
-     * @return void
-     */
-    private function dataTypesTranslations()
-    {
-        // Adding translations for 'display_name_singular'
-        //
-        $_fld = 'display_name_singular';
-        $_tpl = ['data_types', $_fld];
-        $dtp = DataType::where($_fld, 'Post')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $dtp->id), '文章');
-        }
-        $dtp = DataType::where($_fld, 'Page')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $dtp->id), '单页');
-        }
-        $dtp = DataType::where($_fld, 'User')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $dtp->id), '用户');
-        }
-        $dtp = DataType::where($_fld, 'Category')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $dtp->id), '分类');
-        }
-        $dtp = DataType::where($_fld, 'Menu')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $dtp->id), '菜单');
-        }
-        $dtp = DataType::where($_fld, 'Role')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $dtp->id), '角色');
-        }
-
-        // Adding translations for 'display_name_plural'
-        //
-        $_fld = 'display_name_plural';
-        $_tpl = ['data_types', $_fld];
-        $dtp = DataType::where($_fld, 'Posts')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $dtp->id), '文章');
-        }
-        $dtp = DataType::where($_fld, 'Pages')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $dtp->id), '单页');
-        }
-        $dtp = DataType::where($_fld, 'Users')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $dtp->id), '用户');
-        }
-        $dtp = DataType::where($_fld, 'Categories')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $dtp->id), '分类');
-        }
-        $dtp = DataType::where($_fld, 'Menus')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $dtp->id), '菜单');
-        }
-        $dtp = DataType::where($_fld, 'Roles')->firstOrFail();
-        if ($dtp->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $dtp->id), '角色');
-        }
-    }
 
     /**
      * Auto generate Pages Translations.
@@ -129,81 +113,12 @@ class TranslationsTableSeeder extends Seeder
              * ```
              */
             $_arr = $this->arr(['pages', 'slug'], $page->id);
-            $this->trans('zh_CN', $_arr, 'ola-mundo');
+            $this->trans('zh_CN', $_arr, 'hello-world');
 
             $_arr = $this->arr(['pages', 'body'], $page->id);
             $this->trans('zh_CN', $_arr, '<p>第一行内容</p>'
-                                        ."\r\n".'<p>第二行内容</p>');
+                ."\r\n".'<p>第二行内容</p>');
         }
-    }
-
-    /**
-     * Auto generate Menus Translations.
-     *
-     * @return void
-     */
-    private function menusTranslations()
-    {
-        $_tpl = ['menu_items', 'title'];
-        $_item = $this->findMenuItem('Dashboard');
-        if ($_item->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $_item->id), '控制面板');
-        }
-
-        $_item = $this->findMenuItem('Media');
-        if ($_item->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $_item->id), '媒体');
-        }
-
-        $_item = $this->findMenuItem('Posts');
-        if ($_item->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $_item->id), '文章');
-        }
-
-        $_item = $this->findMenuItem('Users');
-        if ($_item->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $_item->id), '用户');
-        }
-
-        $_item = $this->findMenuItem('Categories');
-        if ($_item->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $_item->id), '分类');
-        }
-
-        $_item = $this->findMenuItem('Pages');
-        if ($_item->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $_item->id), '单页');
-        }
-
-        $_item = $this->findMenuItem('Roles');
-        if ($_item->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $_item->id), '角色');
-        }
-
-        $_item = $this->findMenuItem('Tools');
-        if ($_item->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $_item->id), '工具');
-        }
-
-        $_item = $this->findMenuItem('Menu Builder');
-        if ($_item->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $_item->id), '菜单');
-        }
-
-        $_item = $this->findMenuItem('Database');
-        if ($_item->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $_item->id), '数据库');
-        }
-
-        $_item = $this->findMenuItem('Settings');
-        if ($_item->exists) {
-            $this->trans('zh_CN', $this->arr($_tpl, $_item->id), '配置');
-        }
-    }
-
-    private function findMenuItem($title)
-    {
-        return MenuItem::where('title', $title)->firstOrFail();
     }
 
     private function arr($par, $id)
